@@ -3,6 +3,12 @@
 #include "common.h"
 #include "Stack.h"
 
+enum cpu_states {
+    FETCH,
+    EXEC,
+    IDLE
+};
+
 class Cpu
 {
 private:
@@ -11,7 +17,7 @@ private:
     bool running = false;
     Stack stack;
     int cpu_id;
-
+    enum cpu_states cpu_state;
 
 public:
     Cpu();

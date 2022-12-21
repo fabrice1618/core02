@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "Cpu.h"
+#include "Ram.h"
 
 using namespace std;
 
@@ -15,8 +16,22 @@ Cpu::Cpu()
     
 }
 
+// Running cpu_state machine :)
 void Cpu::clock()
 {
+    /*
+    Ram* ram = Ram::getInstance();
+    octet opcode;
+
+    if (cpu_state == FETCH) {
+        opcode = ram->read(pc);
+
+    } else if (cpu_state == EXEC) {
+
+    } else if (cpu_state == IDLE) {
+
+    }*/
+    
     cout << "Cpu::clock()" << endl;
 }
 
@@ -24,6 +39,7 @@ void Cpu::reset( adresse reset_vector )
 {
     cout << "Cpu::reset(" << (int)reset_vector << ")" << endl;
     pc = reset_vector;
+    cpu_state = FETCH;
     running = true;
 }
 

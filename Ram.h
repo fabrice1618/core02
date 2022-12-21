@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 #include "common.h"
 
@@ -13,7 +14,10 @@ public:
     static Ram* getInstance();
     void write(adresse adr, octet valeur);
     octet read(adresse adr);
+    void read_file(adresse adr, std::string filename);
+    void dump_ram( adresse start, int len );
 
 private:
-    Ram() {};  // Constructeur caché
+    Ram();  // Constructeur caché
+    void init();
 };

@@ -1,19 +1,19 @@
 #include <iostream>
 #include <vector>
 
-#include "Opcode.h"
+#include "InstructionSet.h"
 
 using namespace std;
 
 // Définition
-Opcode::Opcode()
+InstructionSet::InstructionSet()
 {
     
 }
 
-void Opcode::load_instruction_set()
+void InstructionSet::load()
 {
-    struct InstructionSet opcode[256] = { 
+    struct Instruction opcode[256] = { 
         {IMPLIED, "LIV", 0x0F, 1, 2}, 
         {IMPLIED, "KIL", 0x1F, 1, 1},
         {IMPLIED, "NOP", 0xEA, 1, 2}, 
@@ -30,18 +30,20 @@ void Opcode::load_instruction_set()
 
 }
 
-void Opcode::list_instruction_set()
+void InstructionSet::list()
 {
-    struct InstructionSet op;
+    struct Instruction opcode;
+
+    cout << "{ adrmode, syntax, hexa, fetch_len, cycles }" << endl;
 
     for (int i = 0; i < instruction_set.size(); i++) {
-        op = instruction_set[i];
-        cout << "{" << s_adrmode(op.adrmode) << "," << op.syntax << "," << op.hexa << "," << op.fetch_len << "," << op.cycles << "}" << endl;
+        opcode = instruction_set[i];
+        cout << "{" << s_adrmode(opcode.adrmode) << "," << opcode.syntax << "," << opcode.hexa << "," << opcode.fetch_len << "," << opcode.cycles << "}" << endl;
     }
     
 }
 
-string Opcode::s_adrmode(enum addressing_mode adrmode)
+string InstructionSet::s_adrmode(enum addressing_mode adrmode)
 {
     switch (adrmode)
     {

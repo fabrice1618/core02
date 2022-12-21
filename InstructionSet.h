@@ -19,7 +19,7 @@ enum addressing_mode {
 };
 
 
-struct InstructionSet {
+struct Instruction {
     enum addressing_mode adrmode;
     string syntax;
     int hexa;
@@ -27,14 +27,14 @@ struct InstructionSet {
     int cycles;
 };
 
-class Opcode {
+class InstructionSet {
 private:
-    vector<struct InstructionSet> instruction_set;
+    vector<struct Instruction> instruction_set;
 
 public:
-    Opcode();
-    void load_instruction_set();
-    void list_instruction_set();
+    InstructionSet();
+    void load();
+    void list();
     string s_adrmode(enum addressing_mode adrmode);
 };
 

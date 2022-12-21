@@ -4,7 +4,7 @@
 #include "Stack.h"
 #include "Ram.h"
 #include "Cpu.h"
-#include "Opcode.h"
+#include "InstructionSet.h"
 
 using namespace std;
 
@@ -52,6 +52,15 @@ void test_ram()
     }
 }
 
+void test_ram2()
+{
+    Ram* ram = Ram::getInstance();
+
+    ram->read_file(0x12, "hello.hex");
+    ram->dump_ram(0, 48);
+
+}
+
 void test_systeme()
 {
     Systeme systeme;
@@ -66,10 +75,10 @@ void test_systeme()
 
 void test_opcode()
 {
-    Opcode op;
+    InstructionSet inst_set;
 
-    op.load_instruction_set();
-    op.list_instruction_set();
+    inst_set.load();
+    inst_set.list();
 
 }
 
@@ -77,7 +86,8 @@ int main()
 {
     //test_stack();
     //test_ram();
+    test_ram2();
     //test_cpu();
     //test_systeme();
-    test_opcode();
+//    test_opcode();
 }
